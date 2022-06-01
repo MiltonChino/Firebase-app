@@ -9,7 +9,7 @@ To see how it works:
 * Activate the environment
 * Download django with pip installer
 * Run the server
-* Open this link on your server http://localhost:8000/projects/ 
+* Open this link on your server http://localhost:8000/projects/ to see the web app working
 
 
 The purpose of this project is to practice creating django projects and apps, adding web pages with views and templates, getting user inputs with forms, connect views and templates with URL configurations, adding data to the website using relational databases with Django's Object Relational Mapper, using Django admin to manage models.
@@ -19,10 +19,10 @@ Video comming soon
 
 # Web Pages
 
-{Describe each of the web pages you created and how the web app transitions between each of them.  Also describe what is dynamically created on each page.}
 I created two principal web pages: 
 * A home page to display a list of examples of personal projects completed successfully.
 * A blog page to display a list of posts.
+
 Both pages transition between them using a navigation bar.
 The lists of projects and blog posts and the detailed views of projects and blog post are created dinamically.
 
@@ -43,7 +43,6 @@ Django library
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
 * Add a Contact form with content validation
 * Add Footer with Bootstrap
 * Improve contents display
