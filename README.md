@@ -14,8 +14,8 @@ To see how it works:
 
 The purpose of this project is to practice creating django projects and apps, adding web pages with views and templates, getting user inputs with forms, connect views and templates with URL configurations, adding data to the website using relational databases with Django's Object Relational Mapper, using Django admin to manage models.
 
-Video comming soon
-[Software Demo Video](#)
+Watch the video for an overview of how the project works
+[Web App Video Overview](https://youtu.be/gBU3DRwJnEY)
 
 # Web Pages
 
