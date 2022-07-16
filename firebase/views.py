@@ -4,7 +4,5 @@ from django.shortcuts import render
 def firebase_detail(request):
     # project = Project.objects.get(pk=pk)
     firebase = 0
-    context = {
-        'project': firebase
-    }
+    context = {  'project': firebase}
     return render(request, 'firebase_detail.html', context)
