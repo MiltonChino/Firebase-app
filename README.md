@@ -1,49 +1,38 @@
 # Overview
 
-I created a personal web app portfolio.
-To see how it works:
-* Download the project as a zip file
-* Unzip the project and save it in a place to work
-* open the folder on your workplace on VScode
-* Create a virtual environment
-* Activate the environment
-* Download django with pip installer
-* Run the server
-* Open this link on your server http://localhost:8000/projects/ to see the web app working
+{Provide a description the software that you wrote and how it integrates with a Cloud Database.  Describe how to use your program.}
+This is a console app to keep track of your pending tasks for the week. Select one option of the menu and create new tasks, display the list of tasks, edit a whole task, delete tasks, and delete one field of a task.  
 
+This program will help anyone to follow up your most important tasks of the week.
 
-The purpose of this project is to practice creating django projects and apps, adding web pages with views and templates, getting user inputs with forms, connect views and templates with URL configurations, adding data to the website using relational databases with Django's Object Relational Mapper, using Django admin to manage models.
+[Software Demo Video will come soon](#)
 
-Watch the video for an overview of how the project works
-[Web App Video Overview](https://youtu.be/gBU3DRwJnEY)
+# Cloud Database
 
-# Web Pages
+Firebase - Cloud Firestore
 
-I created two principal web pages: 
-* A home page to display a list of examples of personal projects completed successfully.
-* A blog page to display a list of posts.
-
-Both pages transition between them using a navigation bar.
-The lists of projects and blog posts and the detailed views of projects and blog post are created dinamically.
+The database is working with 5 principal fields: 
+* Title of taks: String type
+* Description of the task: String type
+* Due time of the taks: String type (to be improved with data validation)
+* Label of the task (optional): String type
 
 # Development Environment
 
-Visual Studio Code
+{Describe the tools that you used to develop the software}
+* Python 3
+* Firebase - Google Cloud Platform
+* VScode
 
-Python programming language
-
-Django library
+Python language.
+firebase-admin package.
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-* [Step by Step Django tutorial](https://realpython.com/get-started-with-django-1/#set-up-your-development-environment)
-* [Virtual Environment details](https://docs.python.org/3/library/venv.html#creating-virtual-environments)
-* [Example source code](https://github.com/realpython/materials/tree/master/rp-portfolio)
+* [Get started with Firebase](https://firebase.google.com/docs/firestore/quickstart)
+* [Python code examples](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/e9063143db274e1c4f6e12cf030c85e53dbf9592/firestore/cloud-client/snippets.py)
 
 # Future Work
 
-* Add a Contact form with content validation
-* Add Footer with Bootstrap
-* Improve contents display
-* Fix database models order
+* Tkinter interface
+* Improvement of CRUD logic for the database 

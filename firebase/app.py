@@ -80,10 +80,10 @@ def PrintMenu():
 
 def main():
     start_app = True
+    list_of_tasks = []
     while start_app:
         option = ''
         PrintMenu()
-        # database = quickstart_new_instance()
         option = input("Enter option: ")
         if option == "1":
             displayAllTasks()
@@ -91,11 +91,8 @@ def main():
             addTask()
         if option == "3":
             tasks = getTasks()
-            task_id = input("Task ID: ")
-            if task_id in tasks.id:
-                editTask()
         if option == "4":
-            deleteTask()
+            deleteTask(list_of_tasks)
         if option == '0':
             start_app = False
     
@@ -104,23 +101,26 @@ def main():
 
 def displayAllTasks():
     db = firestore.client()
-    users_ref = db.collection(u'tasks')
-    docs = users_ref.stream()
+    doc_ref = db.collection(u'tasks')
+    docs = doc_ref.stream()
+    n = 0
     print ('=======================')
     print("Display Tasks List")
     print("__________________")
     for doc in docs:
+        print(f'ID: {doc.id}')
         displayFields(doc.to_dict())
         print("-----------------")
-        # print(f'{doc.id} => {doc.to_dict()}') #No need of this line
+        n += 1
+    print('_______________________')
+    print(f'Tasks found: {n}')
     print('========================')
 
 def addTask():
     # from google.cloud import firestore
-
     db = firestore.client()
     tasks = db.collection(u'tasks').document()
-    label_exists = True   
+    label_exists = False
     # Ask for values
     print('====================================')
     print('Please enter the following values: ')
@@ -141,13 +141,14 @@ def addTask():
 
 def displayTask():
     db = firestore.client()
-    tasks_ref = db.collection(u'tasks').where(u'Label', u'==', u'BYUI' )
+    # tasks_ref = db.collection(u'tasks').where(u'Label', u'==', u'BYUI' )
+    tasks_ref = db.collection(u'tasks')
     query = tasks_ref.stream()
     n_tasks = 0
     print('================')
     print("Display Task")
     for task in query:
-        # print(f'{task.id} => ')
+        print(f'{task.id} => ')
         displayFields(task.to_dict())
         print()
         n_tasks+=1
@@ -155,11 +156,11 @@ def displayTask():
     print(f'Tasks found: {n_tasks}')
     print('=======================')
 
-def displayFields(tasks):
-    title = tasks['Title']
-    desc = tasks['Description']
-    time = tasks['Time']
-    label = tasks['Label']
+def displayFields(task):
+    title = task['Title']
+    desc = task['Description']
+    time = task['Time']
+    label = task['Label']
 
     print(f'Title: {title}')
     print(f'Description: {desc}')
@@ -167,30 +168,58 @@ def displayFields(tasks):
     if label != Empty:
         print(f'Label: {label}')
 
-def taskProperties():
-    db = firestore.client()
-    doc_ref = db.collection(u'tasks')
-
-    doc_ref.set({
-        u'Title': u'Add your title',
-        u'Time': u'Add your end time ',
-        u'Description': u'Add your description',
-        u'Tag': "Add your tag"
-        })
-
-    print("")
-
 def getTasks():
     db = firestore.client()
     task_ref = db.collection(u'tasks')
     tasks = task_ref.stream()
+    list_of_tasks = []
+    n = 0
+    print ('')
+    for task in tasks:
+        # print(f'{task.id} => ')
+        list_of_tasks.append(task.id)
+        displayFields(task.to_dict())
+        print('---------------------')
+        n += 1
+
+    print('Select the ID of the task to edit:')
+    print(list_of_tasks)
+    task_id = input('Task ID: ')
+    task_ref = db.collection(u'tasks')
+    tasks = task_ref.stream()
+    for task in tasks:
+        if task.id == task_id:
+            print(f'{task.id} => ')
+            displayFields(task.to_dict())
+            editTask(task_id)
+
+            print()
     pass
 
 
-def editTask():
+def editTask(id):
     db = firestore.client()
-    users_ref = db.collection(u'tasks')
-    docs = users_ref.stream()
+    tasks = db.collection(u'tasks').document(id)
+    # docs = docs_ref.stream()
+    label_exists = True   
+    # Ask for values
+    
+    print('====================================')
+    print('Please update the following values: ')
+    title = input(f'Title of the task: ')
+    desc = input(f'Description of the task: ')
+    time = input(f'Due date: ')
+    label = input(f'Label of the task (if there is no label, press enter): ')
+    if label == '':
+        label_exists = False
+
+    task = Task(title,desc,time,label,label_exists)
+    tasks.set(task.to_dict())
+
+    print('-------------------')
+    print('Task submitted: ')
+    displayFields(task.to_dict())
+    print('====================================')
     pass
 
 def deleteField():
