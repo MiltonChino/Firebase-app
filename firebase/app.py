@@ -162,6 +162,7 @@ def displayFields(task):
     time = task['Time']
     label = task['Label']
 
+
     print(f'Title: {title}')
     print(f'Description: {desc}')
     print(f'Time: {time}')
